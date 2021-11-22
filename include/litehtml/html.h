@@ -62,6 +62,7 @@ namespace litehtml
 		virtual std::shared_ptr<litehtml::element>	create_element(const litehtml::tchar_t *tag_name,
 																	 const litehtml::string_map &attributes,
 																	 const std::shared_ptr<litehtml::document> &doc) = 0;
+		virtual void on_element_created(litehtml::element::ptr el) = 0;
 
 		virtual void				get_media_features(litehtml::media_features& media) const = 0;
 		virtual void				get_language(litehtml::tstring& language, litehtml::tstring & culture) const = 0;
