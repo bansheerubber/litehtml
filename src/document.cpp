@@ -495,6 +495,7 @@ bool litehtml::document::on_lbutton_up( int x, int y, int client_x, int client_y
 	}
 	if(m_over_element)
 	{
+		container()->on_element_click(m_over_element->shared_from_this());
 		if(m_over_element->on_lbutton_up())
 		{
 			return m_root->find_styles_changes(redraw_boxes, 0, 0);
