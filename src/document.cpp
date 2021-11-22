@@ -577,6 +577,8 @@ litehtml::element::ptr litehtml::document::create_element(const tchar_t* tag_nam
 		}
 	}
 
+	m_container->on_element_created(newTag->shared_from_this());
+
 	return newTag;
 }
 
