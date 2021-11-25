@@ -930,24 +930,25 @@ void litehtml::document::fix_table_parent(element::ptr& el_ptr, style_display di
 	}
 }
 
-void litehtml::document::append_children_from_string(element& parent, const tchar_t* str)
+litehtml::elements_vector litehtml::document::append_children_from_string(element& parent, const tchar_t* str)
 {
-	append_children_from_utf8(parent, litehtml_to_utf8(str));
+	return append_children_from_utf8(parent, litehtml_to_utf8(str));
 }
 
-void litehtml::document::append_children_from_utf8(element& parent, const char* str)
+litehtml::elements_vector litehtml::document::append_children_from_utf8(element& parent, const char* str)
 {
+	elements_vector child_elements;
+	
 	// parent must belong to this document
 	if (parent.get_document().get() != this)
 	{
-		return;
+		return child_elements;
 	}
 
 	// parse document into GumboOutput
 	GumboOutput* output = gumbo_parse((const char*) str);
 
 	// Create litehtml::elements.
-	elements_vector child_elements;
 	create_node(output->root, child_elements, true);
 
 	// Destroy GumboOutput
@@ -979,4 +980,6 @@ void litehtml::document::append_children_from_utf8(element& parent, const char* 
 		// Fanaly initialize elements
 		child->init();
 	}
+
+	return child_elements;
 }
