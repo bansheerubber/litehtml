@@ -84,8 +84,8 @@ namespace litehtml
 		void							add_tabular(const element::ptr& el);
 		element::const_ptr		        get_over_element() const { return m_over_element; }
 
-		void                            append_children_from_string(element& parent, const tchar_t* str);
-		void                            append_children_from_utf8(element& parent, const char* str);
+		litehtml::elements_vector append_children_from_string(element& parent, const tchar_t* str);
+		litehtml::elements_vector append_children_from_utf8(element& parent, const char* str);
 
 		static litehtml::document::ptr createFromString(const tchar_t* str, litehtml::document_container* objPainter, litehtml::context* ctx, litehtml::css* user_styles = nullptr);
 		static litehtml::document::ptr createFromUTF8(const char* str, litehtml::document_container* objPainter, litehtml::context* ctx, litehtml::css* user_styles = nullptr);
