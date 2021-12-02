@@ -50,6 +50,7 @@ bool litehtml::html_tag::removeChild(const element::ptr &el)
 	if(el && el->parent() == shared_from_this())
 	{
 		el->parent(nullptr);
+		el->m_doc.lock()->remove_tabular(el);
 		m_children.erase(std::remove(m_children.begin(), m_children.end(), el), m_children.end());
 		return true;
 	}
@@ -62,6 +63,7 @@ void litehtml::html_tag::clearRecursive()
 	{
 		el->clearRecursive();
 		el->parent(nullptr);
+		el->m_doc.lock()->remove_tabular(el);
 	}
 	m_children.clear();
 }
