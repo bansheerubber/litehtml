@@ -82,6 +82,7 @@ namespace litehtml
 		bool							lang_changed();
 		bool                            match_lang(const tstring & lang);
 		void							add_tabular(const element::ptr& el);
+		void 							remove_tabular(const element::ptr& el);
 		element::const_ptr		        get_over_element() const { return m_over_element; }
 
 		litehtml::elements_vector append_children_from_string(element& parent, const tchar_t* str);
@@ -107,6 +108,10 @@ namespace litehtml
 	inline void document::add_tabular(const element::ptr& el)
 	{
 		m_tabular_elements.push_back(el);
+	}
+	inline void document::remove_tabular(const element::ptr& el)
+	{
+		m_tabular_elements.erase(std::remove(m_tabular_elements.begin(), m_tabular_elements.end(), el), m_tabular_elements.end());
 	}
 	inline bool document::match_lang(const tstring & lang)
 	{
