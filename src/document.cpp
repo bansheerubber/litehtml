@@ -738,7 +738,7 @@ void litehtml::document::create_node(void* gnode, elements_vector& elements, boo
 		break;
 	case GUMBO_NODE_WHITESPACE:
 		{
-			tstring str = litehtml_from_utf8(node->v.text.text);
+			tstring str = tstring(litehtml_from_utf8(node->v.text.text));
 			for (size_t i = 0; i < str.length(); i++)
 			{
 				elements.push_back(std::make_shared<el_space>(str.substr(i, 1).c_str(), shared_from_this()));
